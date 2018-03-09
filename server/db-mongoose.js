@@ -24,5 +24,5 @@ function dbGet() {
 module.exports = {
   dbConnect,
   dbDisconnect,
-  dbGet
+  dbGet 
 };
