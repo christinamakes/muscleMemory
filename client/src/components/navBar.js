@@ -1,5 +1,6 @@
 import React, {Component} from 'react' ;
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 const Nav = styled.ul`
   color: red;
@@ -12,8 +13,9 @@ class NavBar extends Component {
     return (
       <nav className='nav-bar'>
         <Nav>
-          <li>Home</li>
+          <Link to='/'>Home</Link>
           <li>Exercises</li>
+          <Link to='/register'>Sign up</Link>
         </Nav>
       </nav>
     );
