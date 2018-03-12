@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import './styles/App.css';
 // import Tilt from 'react-tilt';
 import NavBar from './navBar';
+import SignupPage from './signupPage'
+import {Route} from 'react-router-dom';
 
 class App extends Component {
+
   onMouseLeave(e) {
     console.log('clientY:', e.nativeEvent.clientY);
   }
@@ -18,6 +21,7 @@ class App extends Component {
       // </div>
       <div>
         <NavBar />
+        <Route exact path='/register' component={SignupPage} />
       </div>
     );
   }

@@ -10,12 +10,12 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className='nav-bar'>
+      <nav className='nav-bar'>
         <Nav>
           <li>Home</li>
           <li>Exercises</li>
         </Nav>
-      </div>
+      </nav>
     );
   }
 }
