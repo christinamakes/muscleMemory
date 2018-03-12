@@ -3,7 +3,9 @@ import './styles/App.css';
 // import Tilt from 'react-tilt';
 import NavBar from './navBar';
 import SignupPage from './signupPage'
+import Login from './login';
 import {Route} from 'react-router-dom';
+
 
 class App extends Component {
 
@@ -22,6 +24,7 @@ class App extends Component {
       <div>
         <NavBar />
         <Route exact path='/register' component={SignupPage} />
+        <Route exact path='/login' component={Login} />
       </div>
     );
   }

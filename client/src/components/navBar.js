@@ -1,11 +1,7 @@
 import React, {Component} from 'react' ;
-import styled from 'styled-components';
-import {Link} from 'react-router-dom';
-
-const Nav = styled.ul`
-  color: red;
-  list-style: none
-`;
+// import styled from 'styled-components';
+// import {Link} from 'react-router-dom';
+import {Nav, StyleLink} from './styles/links'
 
 class NavBar extends Component {
 
@@ -13,9 +9,10 @@ class NavBar extends Component {
     return (
       <nav className='nav-bar'>
         <Nav>
-          <Link to='/'>Home</Link>
-          <li>Exercises</li>
-          <Link to='/register'>Sign up</Link>
+            <StyleLink to='/'>Home</StyleLink>
+            <StyleLink to='/exercises'>Exercises</StyleLink>
+            <StyleLink to='/register'>Sign up</StyleLink>
+            <StyleLink to='/login'>Login</StyleLink>
         </Nav>
       </nav>
     );
