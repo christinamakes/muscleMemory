@@ -3,6 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 // import login action
 // import validators
 import {registerUser} from '../actions/users';
+import {login} from '../actions/auth';
 import Input from './input';
 
 //STYLES 
@@ -20,8 +21,7 @@ export class SignupForm extends React.Component {
     const user = {username, password, firstName, lastName}
     console.log(user);
     return this.props.dispatch(registerUser(user))
-      .then(() => console.log("dispatched!"));
-      // this.props.dispatch(login(username,password)));
+      .then(() => this.props.dispatch(login(username,password)));
   }
 
   render() {
