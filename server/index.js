@@ -1,15 +1,20 @@
 'use strict'; 
 
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const {PORT, CLIENT_ORIGIN, DATABASE_URL} = require('./config');
-const {dbConnect} = require('./db-mongoose');
+// const {dbConnect} = require('./db-mongoose');
 
 const userRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+
+const localStrategy = require('./strats/local');
+const jwtStrategy = require('./strats/jwt');
 
 const app = express();
 
@@ -27,6 +32,10 @@ app.use(
 
 // Parse request body
 app.use(express.json());
+
+// Strategies
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 // Routers
 app.use('/workout', userRouter);

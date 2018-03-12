@@ -4,28 +4,37 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 
-
+// generate JWT with user credentials
+const createAuthToken = function(user) {
+  return jwt.sign({user}, config.JWT_SECRET, {
+    subject: user.username,
+    expiresIn: config.JWT_EXPIRY,
+    algorithm: 'HS256'
+  });
+};
 // LOGIN USER
-router.post('/login', bodyParser.json(), (req, res, next) => {
-  console.log('server side');
-  const {username, password} = req.body;
 
-  const user = { 
-    username,
-    password
-  };
+const localAuth = passport.authenticate('local', {session: false});
+  router.use(bodyParser.json());
+// CREATE AND SEND NEW JWT
+  router.post('/login', localAuth, (req, res) => {
+    console.log(req.user + 'in login router');
+    const authToken = createAuthToken(req.user.toObject());
+    res.json({authToken});
+});
 
-  if (user.username === 'username') {
-  console.log('worked');
-  }
-  // User
-  //   .create(newser)
-  //   .then(results => {
-  //     res.json(results);
-  //   }).catch(err => console.log(err));
+
+const jwtAuth = passport.authenticate('jwt', {session: false});
+// REFRESH EXISTING JWT FOR AUTHENTICATED USER
+router.post('/refresh', jwtAuth, (req, res) => {
+  const authToken = createAuthToken(req.user);
+  res.json({authToken});
 });
 
 module.exports = router;

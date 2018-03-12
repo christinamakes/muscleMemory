@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 
-// GET USERS
+// GET USERS -- REMOVE BEFORE PRODUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.get('/users', (req, res, next) => {
   User
     .find()
@@ -23,18 +23,28 @@ router.post('/users', bodyParser.json(), (req, res, next) => {
   console.log('server side');
   const {firstName, lastName, username, password} = req.body;
 
-  const newUser = {
-    firstName,
-    lastName, 
-    username,
-    password
-  };
 
-  User
-    .create(newUser)
-    .then(results => {
-      res.json(results);
-    }).catch(err => console.log(err));
+  const hashPassword = User.hashPassword(password)
+    .then(hash => {
+      User
+        .create({
+          firstName,
+          lastName, 
+          username,
+          password: hash
+      })
+      .then(user => {
+        return res.status(201).json(user.toObject());
+      }).catch(err => {
+        console.log(err);
+        if (err.reason === 'ValidationError') {
+          return res.status(err.code).json(err);
+        }
+        res.status(500).json({code: 500, message: 'Internal server error'});
+      });
+    });
+
+  
 });
 
 module.exports = router;
