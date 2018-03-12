@@ -9,6 +9,7 @@ const {PORT, CLIENT_ORIGIN, DATABASE_URL} = require('./config');
 const {dbConnect} = require('./db-mongoose');
 
 const userRouter = require('./routes/users');
+const loginRouter = require('./routes/login');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(express.json());
 
 // Routers
 app.use('/workout', userRouter);
+app.use('/workout', loginRouter);
 
 // Catch-all 404
 app.use(function (req, res, next) {
