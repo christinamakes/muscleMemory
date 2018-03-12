@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
@@ -18,7 +19,8 @@ router.get('/users', (req, res, next) => {
 });
 
 // POST USERS
-router.post('/users', (req, res, next) => {
+router.post('/users', bodyParser.json(), (req, res, next) => {
+  console.log('server side');
   const {firstName, lastName, username, password} = req.body;
 
   const newUser = {
