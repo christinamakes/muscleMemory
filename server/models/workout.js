@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 
 const workoutSchema = mongoose.Schema({
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
-  exercises: [{type: String, default: ''}],
-  musclesWorked: [{type: Number}],
-  secondaryMusclesWorked: [{type: Number}]
+  exercises: [{type: mongoose.Schema.Types.ObjectId, ref:'Exercise'}],
+  // musclesWorked: [{type: Number}],
+  // secondaryMusclesWorked: [{type: Number}]
 });
 
 workoutSchema.set('toObject', {

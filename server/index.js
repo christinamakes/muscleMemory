@@ -12,6 +12,8 @@ const {PORT, CLIENT_ORIGIN, DATABASE_URL} = require('./config');
 
 const userRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const exerciseRouter = require('./routes/exercises');
+const workoutRouter = require('./routes/workouts.js');
 
 const localStrategy = require('./strats/local');
 const jwtStrategy = require('./strats/jwt');
@@ -40,6 +42,8 @@ passport.use(jwtStrategy);
 // Routers
 app.use('/workout', userRouter);
 app.use('/workout', loginRouter);
+app.use('/workout', exerciseRouter);
+app.use('/workout', workoutRouter);
 
 // Catch-all 404
 app.use(function (req, res, next) {

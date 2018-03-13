@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 router.get('/users', (req, res, next) => {
   User
     .find()
+    // .populate('workouts')
     .then(result => {
       res.json(result);
     })
@@ -20,11 +21,10 @@ router.get('/users', (req, res, next) => {
 
 // POST USERS
 router.post('/users', bodyParser.json(), (req, res, next) => {
-  console.log('server side');
   const {firstName, lastName, username, password} = req.body;
 
 
-  const hashPassword = User.hashPassword(password)
+  User.hashPassword(password)
     .then(hash => {
       User
         .create({
