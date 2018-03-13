@@ -1,8 +1,23 @@
 [
   {
-    "name": "Bicep"
+    "name": "Arms"
   },
   {
     "name": "Legs"
+  },
+  {
+    "name": "Back"
+  },
+  {
+    "name": "Shoulders"
+  },
+  {
+    "name": "Glutes"
+  },
+  {
+    "name": "Abs"
+  },
+  {
+    "name": "Chest"
   }
 ]

@@ -16,14 +16,10 @@ router.post('/exercise', jwtAuth,(req, res) => {
   console.log('exercise endpoint');
 
   const {exerciseName, exerciseDescription, musclesWorked} = req.body;
-  // const musclesWorked = ["5aa7efd0ead454399b4faf7e"]
 
   console.log(exerciseDescription + ' desc');
   console.log(exerciseName + ' name');
   console.log(musclesWorked + ' muscles');
-
-  // keys for muscle IDS
-
 
   Exercise
     .create({exerciseName, exerciseDescription, musclesWorked})
@@ -35,11 +31,12 @@ router.post('/exercise', jwtAuth,(req, res) => {
 
 
 router.get('/exercise', (req, res) => {
-  
+  console.log('hit');
   Exercise
     .find()
     .populate('musclesWorked')
     .then(results => {
+      console.log(results);
       return res.status(200).json(results);
     });
   
