@@ -11,9 +11,10 @@ import {SubmitButton} from './styles/buttons'
 
 export class ExerciseForm extends React.Component {
   onSubmit(values) {
-    const {exerciseName, exerciseDescription, bicep} = values;
-  
-    return this.props.dispatch(newExercise(exerciseName, exerciseDescription, bicep))
+    const {exerciseName, exerciseDescription, musclesWorked} = values;
+    
+    const usedMuscles = Object.keys(musclesWorked).filter(muscle => musclesWorked[muscle])
+    return this.props.dispatch(newExercise(exerciseName, exerciseDescription, usedMuscles))
       .then(() => console.log("adding exercise" + exerciseDescription))
   }
 
@@ -37,7 +38,7 @@ export class ExerciseForm extends React.Component {
           component={Input}
           id='bicep' 
           type='checkbox' 
-          name='bicep'
+          name='musclesWorked.5aa7efd0ead454399b4faf7e'
           />
         <SubmitButton type='submit' disabled={this.props.pristine || this.props.submitting}>Login</SubmitButton>
       </form>

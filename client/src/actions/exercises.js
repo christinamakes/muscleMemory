@@ -16,10 +16,11 @@ export const newExerciseError = error => ({
     error
 });
 
-export const newExercise = (exerciseName, exerciseDescription) => (dispatch, getState) => {
+export const newExercise = (exerciseName, exerciseDescription, musclesWorked) => (dispatch, getState) => {
   console.log('sending exercise with ' + exerciseDescription, exerciseName)
   const authToken = getState().auth.authToken;
   console.log(authToken);
+  console.log(musclesWorked);
 
   return fetch(`${API_BASE_URL}/exercise`, {
     method: 'POST',
@@ -29,7 +30,8 @@ export const newExercise = (exerciseName, exerciseDescription) => (dispatch, get
     },
     body: JSON.stringify({
       exerciseName, 
-      exerciseDescription
+      exerciseDescription,
+      musclesWorked: musclesWorked
     })
   })
   .then(res => normalizeResponseErrors(res))
