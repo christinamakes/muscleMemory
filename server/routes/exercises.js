@@ -15,12 +15,15 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 router.post('/exercise', jwtAuth,(req, res) => {
   console.log('exercise endpoint');
 
-  const {exerciseName, exerciseDescription} = req.body;
-  const musclesWorked = ["5aa7efd0ead454399b4faf7e"]
+  const {exerciseName, exerciseDescription, musclesWorked} = req.body;
+  // const musclesWorked = ["5aa7efd0ead454399b4faf7e"]
 
   console.log(exerciseDescription + ' desc');
   console.log(exerciseName + ' name');
   console.log(musclesWorked + ' muscles');
+
+  // keys for muscle IDS
+
 
   Exercise
     .create({exerciseName, exerciseDescription, musclesWorked})
