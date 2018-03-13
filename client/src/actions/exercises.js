@@ -36,7 +36,27 @@ export const newExercise = (exerciseName, exerciseDescription, musclesWorked) =>
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(({data}) => dispatch(newExerciseSuccess(data)))
+  // .then(({data}) => dispatch(newExerciseSuccess(data)))
+  .catch(err => {
+    const {reason, message, location} = err;
+    if (reason === 'ValidationError') {
+      return Promise.reject(
+        new SubmissionError({
+          [location]: message
+        })
+      );
+    }
+    // dispatch(newExerciseError(err));
+  });
+};
+
+export const getExercises = () => dispatch => {
+  return fetch(`${API_BASE_URL}/exercise`, {
+    method: 'GET'
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then((data) => dispatch(newExerciseSuccess(data)))
   .catch(err => {
     const {reason, message, location} = err;
     if (reason === 'ValidationError') {
@@ -48,4 +68,4 @@ export const newExercise = (exerciseName, exerciseDescription, musclesWorked) =>
     }
     dispatch(newExerciseError(err));
   });
-};
+}

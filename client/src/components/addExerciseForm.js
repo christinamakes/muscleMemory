@@ -8,12 +8,22 @@ import {required, notEmpty} from '../validators'
 
 import {SubmitButton} from './styles/buttons'
 
+const muscles = [{'arms':'5aa81a1ca3f42c4d7a855f91'}, 
+{'legs':'5aa7efd0ead454399b4faf7f'}, 
+{'shoulders': '5aa81a1ca3f42c4d7a855f94'},
+{'abs':'5aa81a1ca3f42c4d7a855f96'}, 
+{'chest': '5aa81a1ca3f42c4d7a855f97'},
+{'glute':'5aa81a1ca3f42c4d7a855f95'}]
 
+console.log(Object.values(muscles[1])[0]); // get ID of arms
+console.log(Object.keys(muscles[1]).toString()) // get arms
 export class ExerciseForm extends React.Component {
+  
   onSubmit(values) {
     const {exerciseName, exerciseDescription, musclesWorked} = values;
     
-    const usedMuscles = Object.keys(musclesWorked).filter(muscle => musclesWorked[muscle])
+    const usedMuscles = Object.keys(musclesWorked).filter(muscle => musclesWorked[muscle]) // return all muscles set to true
+    
     return this.props.dispatch(newExercise(exerciseName, exerciseDescription, usedMuscles))
       .then(() => console.log("adding exercise" + exerciseDescription))
   }
@@ -33,13 +43,27 @@ export class ExerciseForm extends React.Component {
           type='text' 
           name='exerciseDescription'
           validate={[required, notEmpty]} />
-        <label htmlFor='bicep'>Biceps</label>
-        <Field 
+        {/* <label htmlFor='bicep'>Biceps</label> */}
+        {muscles.map((muscle, index) => { 
+          const name = Object.keys(muscles[index]).toString();
+          return (
+            <div key={index}>
+              <label htmlFor={name}>{name}</label>
+              <Field
+                component={Input}
+                id={name}
+                type='checkbox'
+                name={`musclesWorked.${Object.values(muscles[index])[0]}`}
+                />
+              </div>)
+          })
+        }
+        {/* <Field 
           component={Input}
           id='bicep' 
           type='checkbox' 
           name='musclesWorked.5aa7efd0ead454399b4faf7e'
-          />
+          /> */}
         <SubmitButton type='submit' disabled={this.props.pristine || this.props.submitting}>Login</SubmitButton>
       </form>
     );
