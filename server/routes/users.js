@@ -23,15 +23,16 @@ router.get('/users', (req, res, next) => {
 router.post('/users', bodyParser.json(), (req, res, next) => {
   const {firstName, lastName, username, password} = req.body;
 
-
-  User.hashPassword(password)
+  let recentWorkoutDate;
+  const hashPassword = User.hashPassword(password)
     .then(hash => {
       User
         .create({
           firstName,
           lastName, 
           username,
-          password: hash
+          password: hash,
+          recentWorkoutDate
       })
       .then(user => {
         return res.status(201).json(user.toObject());
