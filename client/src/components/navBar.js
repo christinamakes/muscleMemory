@@ -11,6 +11,7 @@ class NavBar extends Component {
         <Nav>
             <StyleLink to='/'>Home</StyleLink>
             <StyleLink to='/exercises'>Exercises</StyleLink>
+            <StyleLink to='/workouts'>Workouts</StyleLink>
             <StyleLink to='/register'>Sign up</StyleLink>
             <StyleLink to='/login'>Login</StyleLink>
         </Nav>

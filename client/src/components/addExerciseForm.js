@@ -43,7 +43,7 @@ export class ExerciseForm extends React.Component {
           type='text' 
           name='exerciseDescription'
           validate={[required, notEmpty]} />
-        {/* <label htmlFor='bicep'>Biceps</label> */}
+
         {muscles.map((muscle, index) => { 
           const name = Object.keys(muscles[index]).toString();
           return (
@@ -58,12 +58,6 @@ export class ExerciseForm extends React.Component {
               </div>)
           })
         }
-        {/* <Field 
-          component={Input}
-          id='bicep' 
-          type='checkbox' 
-          name='musclesWorked.5aa7efd0ead454399b4faf7e'
-          /> */}
         <SubmitButton type='submit' disabled={this.props.pristine || this.props.submitting}>Login</SubmitButton>
       </form>
     );
