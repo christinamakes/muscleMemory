@@ -4,13 +4,15 @@ import thunk from 'redux-thunk';
 // import local storage
 import authReducer from './reducers/authReducer';
 import exerciseReducer from './reducers/exerciseReducer';
+import workoutReducer from './reducers/workoutReducer'
 // import setAuth and refreshAuth
 
 const store = createStore(
   combineReducers({
     form: formReducer,
     auth: authReducer,
-    exercise: exerciseReducer
+    exercise: exerciseReducer,
+    workout: workoutReducer
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk)

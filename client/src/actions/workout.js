@@ -4,6 +4,18 @@ import {API_BASE_URL} from '../config'
 import {normalizeResponseErrors} from './utils'
 console.log(API_BASE_URL);
 
+export const GET_WORKOUT_SUCCESS = 'GET_WORKOUT_SUCCESS';
+export const getWorkoutSuccess = data => ({
+    type: GET_WORKOUT_SUCCESS,
+    data
+});
+
+export const GET_WORKOUT_ERROR = 'GET_WORKOUT_ERROR';
+export const getWorkoutError = error => ({
+    type: GET_WORKOUT_ERROR,
+    error
+});
+
 export const NEW_WORKOUT_SUCCESS = 'NEW_WORKOUT_SUCCESS';
 export const newWorkoutSuccess = data => ({
     type: NEW_WORKOUT_SUCCESS,
@@ -27,7 +39,7 @@ export const newWorkout = (workoutName, exercises) => (dispatch, getState) => {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      // Authorization: `Bearer ${authToken}`
+      Authorization: `Bearer ${authToken}`
     },
     body: JSON.stringify({
       workoutName, 
@@ -46,22 +58,21 @@ export const newWorkout = (workoutName, exercises) => (dispatch, getState) => {
   );
 };
 
-// export const getExercises = () => dispatch => {
-//   return fetch(`${API_BASE_URL}/exercise`, {
-//     method: 'GET'
-//   })
-//   .then(res => normalizeResponseErrors(res))
-//   .then(res => res.json())
-//   .then((data) => dispatch(newExerciseSuccess(data)))
-//   .catch(err => {
-//     const {reason, message, location} = err;
-//     if (reason === 'ValidationError') {
-//       return Promise.reject(
-//         new SubmissionError({
-//           [location]: message
-//         })
-//       );
-//     }
-//     dispatch(newExerciseError(err));
-//   });
-// }
+export const getWorkouts = () => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  const userId = getState().auth.currentUser.id
+  return fetch(`${API_BASE_URL}/workout?userId=${userId}`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then((data) => dispatch(getWorkoutSuccess(data)))
+  .catch(err => {
+    console.log(err)
+    dispatch(getWorkoutError(err));
+  });
+}

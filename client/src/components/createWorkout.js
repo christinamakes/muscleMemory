@@ -18,15 +18,16 @@ let exerciseSelect;
 export class WorkoutForm extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch(getExercises());
+    if (this.props.loggedIn) this.props.dispatch(getExercises());
   }
+
   
   onSubmit(values) {
-    const {workoutName, exercises} = values;
+    const {workoutName, exercisesChecked} = values;
     
-    // const usedMuscles = Object.keys(musclesWorked).filter(muscle => musclesWorked[muscle]) // return all muscles set to true
+    const checkedExercises = Object.keys(exercisesChecked).filter(exercise => exercisesChecked[exercise]) // return all muscles set to true
     
-    return this.props.dispatch(newWorkout(workoutName, exercises))
+    return this.props.dispatch(newWorkout(workoutName, checkedExercises))
       .then(() => console.log("adding wokrout " + values))
   }
 
@@ -43,7 +44,7 @@ export class WorkoutForm extends React.Component {
               component={Input}
               id={name}
               type='checkbox'
-              name={eId}
+              name={`exercisesChecked.${eId}`}
               />
             </div>)
         })
@@ -73,6 +74,7 @@ export class WorkoutForm extends React.Component {
 
 export const mapStatetoProps = (state,props) => ({
   exercises: state.exercise.exercises,
+  loggedIn: state.auth.currentUser != null
 }) 
 
 

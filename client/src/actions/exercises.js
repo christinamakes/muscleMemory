@@ -50,9 +50,9 @@ export const newExercise = (exerciseName, exerciseDescription, musclesWorked) =>
   });
 };
 
-export const getExercises = () => dispatch => {
+export const getExercises = () => (dispatch, getState) => {
   return fetch(`${API_BASE_URL}/exercise`, {
-    method: 'GET'
+    method: 'GET',
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
