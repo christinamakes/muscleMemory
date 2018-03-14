@@ -1,6 +1,6 @@
 import React from 'react';
-import ExerciseForm from './addExerciseForm'
-import BrowseExercises from './browseExercises';
+import ExerciseForm from './exercises/addExerciseForm'
+import BrowseExercises from './exercises/browseExercises';
 import MuscleMap from './muscleMap';
 
 

@@ -1,17 +1,17 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {newWorkout} from '../actions/workout'
+import {newWorkout} from '../../actions/workout'
 import Multiselect from 'react-widgets/lib/Multiselect'
 import {connect} from 'react-redux';
 
 // import validators
 
-import Input from './input';
-import {required, notEmpty} from '../validators'
+import Input from '../input';
+import {required, notEmpty} from '../../validators'
 
-import {SubmitButton} from './styles/buttons'
+import {SubmitButton} from '../styles/buttons'
 
-import {getExercises} from '../actions/exercises'
+import {getExercises} from '../../actions/exercises'
 
 let exerciseSelect;
 

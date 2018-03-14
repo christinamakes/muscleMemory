@@ -3,7 +3,7 @@ import './styles/App.css';
 // import Tilt from 'react-tilt';
 import NavBar from './navBar';
 import SignupPage from './signupPage'
-import Login from './login';
+import Login from './login-signup/login';
 import ExercisePage from './exercisePage';
 import WorkoutPage from './workoutPage';
 import Dashboard from './dashboard';

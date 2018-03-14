@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkoutForm from './createWorkout';
+import WorkoutForm from './workout/createWorkout';
 
 
 

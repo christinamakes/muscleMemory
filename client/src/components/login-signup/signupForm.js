@@ -2,16 +2,16 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 // import login action
 // import validators
-import {registerUser} from '../actions/users';
-import {login} from '../actions/auth';
-import Input from './input';
+import {registerUser} from '../../actions/users';
+import {login} from '../../actions/auth';
+import Input from '../input';
 
 //STYLES 
-import {SubmitButton} from './styles/buttons'
-import {RegForm, FormContainer} from './styles/forms';
-import './styles/signupForm.css';
+import {SubmitButton} from '../styles/buttons'
+import {RegForm, FormContainer} from '../styles/forms';
+import '../styles/signupForm.css';
 
-import {required, notEmpty, isTrimmed, length, matches} from '../validators'
+import {required, notEmpty, isTrimmed, length, matches} from '../../validators'
 const passwordLength = length({min:5, max:72});
 const matchesPassword = matches('password');
 

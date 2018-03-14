@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getExercises} from '../actions/exercises'
+import {getExercises} from '../../actions/exercises'
 
 class BrowseExercises extends React.Component {
 

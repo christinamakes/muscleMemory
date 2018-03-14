@@ -1,12 +1,12 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {login} from '../actions/auth'
+import {login} from '../../actions/auth'
 // import validators
 
-import Input from './input';
-import {required, notEmpty, isTrimmed} from '../validators'
+import Input from '../input';
+import {required, notEmpty, isTrimmed} from '../../validators'
 
-import {SubmitButton} from './styles/buttons'
+import {SubmitButton} from '../styles/buttons'
 
 
 export class LoginForm extends React.Component {

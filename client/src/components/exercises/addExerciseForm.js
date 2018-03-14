@@ -1,12 +1,12 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {newExercise} from '../actions/exercises'
+import {newExercise} from '../../actions/exercises'
 // import validators
 
-import Input from './input';
-import {required, notEmpty} from '../validators'
+import Input from '../input';
+import {required, notEmpty} from '../../validators'
 
-import {SubmitButton} from './styles/buttons'
+import {SubmitButton} from '../styles/buttons'
 
 const muscles = [{'arms':'5aa81a1ca3f42c4d7a855f91'}, 
 {'legs':'5aa7efd0ead454399b4faf7f'}, 
