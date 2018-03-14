@@ -31,6 +31,7 @@ app.use(
         origin: CLIENT_ORIGIN
     })
 );
+console.log(CLIENT_ORIGIN);
 
 // Parse request body
 app.use(express.json());

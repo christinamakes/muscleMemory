@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
   password: {type: String, required: true},
   firstName: {type: String, default: ''},
   lastName: {type: String, default: ''},
-  recentWorkoutDate: {type: Date, default: Date.now},
+  recentWorkout: [{type: mongoose.Schema.Types.ObjectId, ref:'Workout'}],
   // workouts: [{type: String}]
 });
 

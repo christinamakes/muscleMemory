@@ -25,7 +25,7 @@ router.post('/workout', (req, res) => {
 
 router.get('/workout', (req, res) => {
   const {userId} = req.query;
-  console.log(userId)
+  console.log(userId);
   Workout
     .find()
     .where({userId: userId})
