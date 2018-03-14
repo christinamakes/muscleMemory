@@ -9,7 +9,6 @@ const userSchema = mongoose.Schema({
   firstName: {type: String, default: ''},
   lastName: {type: String, default: ''},
   recentWorkout: [{type: mongoose.Schema.Types.ObjectId, ref:'Workout'}],
-  // workouts: [{type: String}]
 });
 
 userSchema.set('toObject', {
