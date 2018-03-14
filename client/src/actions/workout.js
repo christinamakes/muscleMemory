@@ -40,6 +40,18 @@ export const completeWorkoutError = error => ({
     error
 });
 
+export const GET_MUSCLES_SUCCESS = 'GET_MUSCLES_SUCCESS';
+export const getMusclesSuccess = data => ({
+    type: GET_MUSCLES_SUCCESS,
+    data
+});
+
+export const GET_MUSCLES_ERROR = 'GET_MUSCLES_ERROR';
+export const getMusclesError = error => ({
+    type: GET_MUSCLES_ERROR,
+    error
+});
+
 export const newWorkout = (workoutName, exercises) => (dispatch, getState) => {
   console.log('sending workout with ' + exercises)
   const authToken = getState().auth.authToken;
@@ -111,5 +123,29 @@ export const getWorkouts = () => (dispatch, getState) => {
   .catch(err => {
     console.log(err)
     dispatch(getWorkoutError(err));
+  });
+}
+
+export const getMusclesFromWorkout = () => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  const userId = getState().auth.currentUser.id
+  const workoutId = getState().auth.currentUser.recentWorkout
+  console.log(workoutId)
+  return fetch(`${API_BASE_URL}/id/muscles?userId=${userId}&workoutId=${workoutId}`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    // body: {
+    //   '_id': workoutId
+    // }
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then((data) => dispatch(getMusclesSuccess(data)))
+  .catch((err) => {
+    console.log(err)
+    dispatch(getMusclesError(err))
   });
 }

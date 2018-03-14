@@ -1,7 +1,8 @@
-import {NEW_WORKOUT_ERROR, NEW_WORKOUT_SUCCESS, GET_WORKOUT_ERROR, GET_WORKOUT_SUCCESS} from '../actions/workout';
+import {NEW_WORKOUT_ERROR, NEW_WORKOUT_SUCCESS, GET_WORKOUT_ERROR, GET_WORKOUT_SUCCESS, GET_MUSCLES_ERROR, GET_MUSCLES_SUCCESS} from '../actions/workout';
 
 const initialState = {
-  workouts: null
+  workouts: null,
+  muscles: null
 };
 
 function workoutReducer(state = initialState, action) {
@@ -12,6 +13,15 @@ function workoutReducer(state = initialState, action) {
         workouts: action.data
       }
     case GET_WORKOUT_ERROR: 
+      return {
+        ...state
+      }
+    case GET_MUSCLES_SUCCESS: 
+      return {
+        ...state,
+        muscles: action.data
+      }
+    case GET_MUSCLES_ERROR: 
       return {
         ...state
       }

@@ -13,8 +13,8 @@ class YourWorkouts extends React.Component {
     
     if (this.props.workouts) {
       console.log(this.props.workouts)
-      workouts = this.props.workouts.map(workout => 
-        <div>
+      workouts = this.props.workouts.map((workout, index) => 
+        <div key={index}>
         <h1>{workout.workoutName}</h1>
         {/* <h1>{workout.exercises}</h1> */}
         </div>)
