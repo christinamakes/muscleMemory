@@ -31,6 +31,7 @@ router.post('/exercise', jwtAuth,(req, res) => {
 
 
 router.get('/exercise', (req, res) => {
+
   console.log('hit');
   Exercise
     .find()

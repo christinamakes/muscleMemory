@@ -24,9 +24,11 @@ router.post('/workout', (req, res) => {
 
 
 router.get('/workout', (req, res) => {
-  
+  const {userId} = req.query;
+  console.log(userId)
   Workout
     .find()
+    .where({userId: userId})
     .populate('exercises')
     .then(results => {
       return res.status(200).json(results);
