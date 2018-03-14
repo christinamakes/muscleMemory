@@ -5,6 +5,7 @@ import NavBar from './navBar';
 import SignupPage from './signupPage'
 import Login from './login';
 import ExercisePage from './exercisePage';
+import MuscleMap from './muscleMap';
 import {Route} from 'react-router-dom';
 
 
@@ -24,6 +25,7 @@ class App extends Component {
       // </div>
       <div>
         <NavBar />
+        <MuscleMap />
         <Route exact path='/register' component={SignupPage} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/exercises' component={ExercisePage} />
