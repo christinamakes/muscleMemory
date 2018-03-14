@@ -28,6 +28,18 @@ export const newWorkoutError = error => ({
     error
 });
 
+export const COMPLETE_WORKOUT_SUCCESS = 'COMPLETE_WORKOUT_SUCCESS';
+export const completeWorkoutSuccess = data => ({
+    type: COMPLETE_WORKOUT_SUCCESS,
+    data
+});
+
+export const COMPLETE_WORKOUT_ERROR = 'COMPLETE_WORKOUT_ERROR';
+export const completeWorkoutError = error => ({
+    type: COMPLETE_WORKOUT_ERROR,
+    error
+});
+
 export const newWorkout = (workoutName, exercises) => (dispatch, getState) => {
   console.log('sending workout with ' + exercises)
   const authToken = getState().auth.authToken;
@@ -54,6 +66,31 @@ export const newWorkout = (workoutName, exercises) => (dispatch, getState) => {
     // const {reason, message, location} = err;
     console.log(err)
     dispatch(newWorkoutError(err));
+    }
+  );
+};
+
+export const completeWorkout = (workout) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  const userId = getState().auth.currentUser.id
+  console.log('adding workout to user' + workout)
+  return fetch(`${API_BASE_URL}/users?userId=${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    },
+    body: JSON.stringify({
+      recentWorkout: workout, 
+    })
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then(({data}) => dispatch(completeWorkoutSuccess(data)))
+  .catch(err => {
+    // const {reason, message, location} = err;
+    console.log(err)
+    dispatch(completeWorkoutError(err));
     }
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {newWorkout} from '../../actions/workout'
-import Multiselect from 'react-widgets/lib/Multiselect'
+// import Multiselect from 'react-widgets/lib/Multiselect'
 import {connect} from 'react-redux';
 
 // import validators
