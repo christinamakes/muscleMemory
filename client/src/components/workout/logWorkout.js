@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {completeWorkout} from '../../actions/workout'
 import {Field, reduxForm} from 'redux-form';
 import Input from '../input';
+import {getMusclesFromWorkout} from '../../actions/workout'
 
 // STYLES
 import {SubmitButton} from '../styles/buttons'
@@ -24,6 +25,7 @@ class LogWorkout extends React.Component {
     const checkedWorkout = Object.keys(workoutSelected).filter(workout => workoutSelected[workout]) // return all muscles set to true
   
     return this.props.dispatch(completeWorkout(checkedWorkout))
+      .then(() => this.props.dispatch(getMusclesFromWorkout()))
       .then(() => console.log("logging workout " + values))
   }
 

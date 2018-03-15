@@ -24,6 +24,8 @@ class WorkedMuscles extends React.Component {
         </div>)
     } else return <h1>Please log a workout</h1>
   
+    // color = {3: 'red'}
+    // muscles = {'arms': 3}
     return (<div>
       <h1>{`Your most recent workout was ${recentW}`}</h1>
       {musclesUsed}
