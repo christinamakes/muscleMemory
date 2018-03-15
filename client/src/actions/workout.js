@@ -29,9 +29,9 @@ export const newWorkoutError = error => ({
 });
 
 export const COMPLETE_WORKOUT_SUCCESS = 'COMPLETE_WORKOUT_SUCCESS';
-export const completeWorkoutSuccess = data => ({
+export const completeWorkoutSuccess = user => ({
     type: COMPLETE_WORKOUT_SUCCESS,
-    data
+    user
 });
 
 export const COMPLETE_WORKOUT_ERROR = 'COMPLETE_WORKOUT_ERROR';
@@ -98,7 +98,7 @@ export const completeWorkout = (workout) => (dispatch, getState) => {
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(({data}) => dispatch(completeWorkoutSuccess(data)))
+  .then((user) => dispatch(completeWorkoutSuccess(user)))
   .catch(err => {
     // const {reason, message, location} = err;
     console.log(err)

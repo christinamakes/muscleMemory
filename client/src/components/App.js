@@ -8,6 +8,7 @@ import ExercisePage from './exercisePage';
 import WorkoutPage from './workoutPage';
 import Dashboard from './dashboard';
 import {Route} from 'react-router-dom';
+import YourWorkouts from './workout/yourWorkouts';
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
         <Route exact path='/exercises' component={ExercisePage} />
         <Route exact path='/workouts' component={WorkoutPage} />
         <Route exact path='/dashboard' component={Dashboard} />
+        <Route exact path='/yourWorkout' component={YourWorkouts} />
       </div>
     );
   }

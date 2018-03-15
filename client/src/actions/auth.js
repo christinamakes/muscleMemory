@@ -3,19 +3,20 @@ import {SubmissionError} from 'redux-form';
 
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
-// import {saveAuthToken, clearAuthToken} from '../local-storage';
+import {saveAuthToken, clearAuthToken} from '../local-storage';
+
 
 // set auth token in state
-export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
-export const setAuthToken = authToken => ({
-  type: SET_AUTH_TOKEN,
+export const SET_AUTH = 'SET_AUTH';
+export const setAuth = authToken => ({
+  type: SET_AUTH,
   authToken
 });
 
 // clear auth token from state
-export const CLEAR_AUTH_TOKEN = 'CLEAR_AUTH_TOKEN';
-export const clearAuthToken = () => ({
-  type: CLEAR_AUTH_TOKEN,
+export const CLEAR_AUTH = 'CLEAR_AUTH';
+export const clearAuth = () => ({
+  type: CLEAR_AUTH,
 });
 
 // define loading state while making request to server 
@@ -43,9 +44,9 @@ export const authFailure = error => ({
 // stores auth token in state & local storage
 const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
-  dispatch(setAuthToken(authToken));
+  dispatch(setAuth(authToken));
   dispatch(authSuccess(decodedToken.user));
-  // saveAuthToken(authToken); // from local storage
+  saveAuthToken(authToken); // from local storage
 }
 
 export const login = (username, password) => dispatch => {
@@ -82,4 +83,23 @@ export const login = (username, password) => dispatch => {
       );
     })
   );
+}
+
+export const refreshAuthToken = () => (dispatch, getState) => {
+  dispatch(authRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/auth/refresh`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${authToken}`
+    }
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+  .catch(err => {
+    dispatch(authFailure(err))
+    dispatch(clearAuth())
+    clearAuthToken(authToken);
+  })
 }

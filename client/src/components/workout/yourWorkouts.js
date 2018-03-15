@@ -6,9 +6,11 @@ class YourWorkouts extends React.Component {
 
   componentDidMount() {
     if (this.props.loggedIn) this.props.dispatch(getWorkouts());
+    
   }
 
   render () {
+    console.log('your workouts mounted')
     let workouts;
     
     if (this.props.workouts) {

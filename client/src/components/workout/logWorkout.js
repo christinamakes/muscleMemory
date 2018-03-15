@@ -13,7 +13,8 @@ let workoutSelect;
 class LogWorkout extends React.Component {
 
   componentDidMount() {
-    if (this.props.loggedIn) this.props.dispatch(completeWorkout());
+    // if (this.props.loggedIn) this.props.dispatch(completeWorkout());
+    console.log('Log workout mounted')
   }
 
   
@@ -21,7 +22,7 @@ class LogWorkout extends React.Component {
     const {workoutSelected} = values;
     
     const checkedWorkout = Object.keys(workoutSelected).filter(workout => workoutSelected[workout]) // return all muscles set to true
-    console.log(checkedWorkout + ' SELECTED')
+  
     return this.props.dispatch(completeWorkout(checkedWorkout))
       .then(() => console.log("logging workout " + values))
   }
