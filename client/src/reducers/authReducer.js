@@ -1,6 +1,7 @@
 import {AUTH_SUCCESS, SET_AUTH, CLEAR_AUTH, AUTH_REQUEST, AUTH_FAILURE} from '../actions/auth';
 import {COMPLETE_WORKOUT_SUCCESS} from '../actions/workout'
 
+
 const initialState = {
   currentUser: null,
   authToken: null,

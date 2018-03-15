@@ -1,23 +1,21 @@
 import React from 'react';
 
 import YourWorkouts from './workout/yourWorkouts';
-import MuscleMap from './muscleMap';
 import LogWorkout from './workout/logWorkout'
 import WorkedMuscles from './muscles/workedMuscles'
 import requiresLogin from './requires-login';
 import {connect} from 'react-redux';
-import { userInfo } from 'os';
 
 class Dashboard extends React.Component {
 
     render() {
+      console.log('dashboard');
       return(
         <div className='dashboard'>
         <h1>Hi there</h1>
         <YourWorkouts />
         <h1>Recently used muscles</h1>
         <WorkedMuscles />
-        <MuscleMap />
         <h1>Log a workout</h1>
         <LogWorkout />
         </div>
@@ -31,4 +29,4 @@ class Dashboard extends React.Component {
     recentWorkout: state.auth.currentUser ? state.auth.currentUser.recentWorkout : 'Please log in to see recent workout'
   }) 
   
-  export default connect(mapStatetoProps)(Dashboard)
+  export default requiresLogin()(connect(mapStatetoProps)(Dashboard))

@@ -4,13 +4,16 @@ import React, {Component} from 'react' ;
 import {connect} from 'react-redux';
 import {Nav, StyleLink} from './styles/links'
 import {clearAuth} from '../actions/auth' 
+import {clearAuthToken} from '../local-storage' // DO THIS
 
 
 
 class NavBar extends Component {
+  
   render() {
     let loggedIn;
     if (this.props.loggedIn) {
+      console.log('loggedin!!')
       loggedIn = <div className='loggedin'>
           <StyleLink to='/workouts'>Workouts</StyleLink>
           <StyleLink to='/exercises'>Exercises</StyleLink>
@@ -34,7 +37,7 @@ class NavBar extends Component {
 }
 
 export const mapStateToProps= (state, props) => ({
-  loggedIn: state.auth.currentUser !== null
+  loggedIn: state.auth.currentUser !== null,
 })
 
 export default connect(mapStateToProps)(NavBar);

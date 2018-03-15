@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getMusclesFromWorkout} from '../../actions/workout'
+import MuscleMap from '../muscleMap';
 import requiresLogin from '../requires-login';
 
 class WorkedMuscles extends React.Component {
@@ -9,12 +10,6 @@ class WorkedMuscles extends React.Component {
     if (this.props.loggedIn && this.props.recentWorkout) this.props.dispatch(getMusclesFromWorkout());
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(this.props.recentWorkout);
-  //   console.log(this.nextProps.recentWorkout + ' next');
-  //   if (this.props.recentWorkout !== null && this.nextProps.recentWorkout !== this.props.recentWorkout)
-  //   this.props.dispatch(getMusclesFromWorkout());
-  // }
   // TODO re-render when log a different workout!!!!!!!!!!!!!!
 
   render () {
@@ -31,8 +26,14 @@ class WorkedMuscles extends React.Component {
   
     return (<div>
       <h1>{`Your most recent workout was ${recentW}`}</h1>
-      {musclesUsed}</div>)
+      {musclesUsed}
+      <MuscleMap 
+        chestColor='yellow'
+        armColor='green'
+      />
+      </div>)
   }
+  
 }
 
 export const mapStatetoProps = (state,props) => ({

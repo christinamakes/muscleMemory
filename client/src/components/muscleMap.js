@@ -2,13 +2,14 @@ import React from 'react';
 import './styles/muscles.css';
 
 // import {Chest} from './styles/muscles'
-const chestColor = 'red';
-const armColor = 'blue';
 
-export default class MuscleMap extends React.Component {
-  render() {
 
-    return (<div className='muscleSVG'>
+
+export default function MuscleMap(props) {
+  const chestColor = props.chestColor;
+  const armColor = props.armColor;
+
+  return( <div className='muscleSVG'>
     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550.27 508.21">
 
     <title>muscleMap</title>
@@ -204,5 +205,4 @@ export default class MuscleMap extends React.Component {
   </svg>
   
     </div>)
-  }
-}
+};
