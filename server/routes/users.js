@@ -52,11 +52,11 @@ router.put('/users', bodyParser.json(), (req, res, next) => {
   const {userId} = req.params;
   console.log('UPDATE');
   User
-    .find({userId: userId})
-    .update({
-      // $push: {recentWorkout}
-      recentWorkout
-      })
+    .findOneAndUpdate({userId: userId}, {recentWorkout: recentWorkout}, {new: true})
+    // .update({
+    //   // $push: {recentWorkout}
+    //   recentWorkout
+    //   })
       .then(user => {
         return res.status(201).json(user);
       }).catch(err => {

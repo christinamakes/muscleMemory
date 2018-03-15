@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const Workout = require('../models/workout');
 const passport = require('passport');
+const countBy = require('lodash.countby');
+const flatMap = require('lodash.flatmap');
 
 
 
@@ -25,7 +27,7 @@ router.post('/workout', (req, res) => {
 
 router.get('/workout', (req, res) => {
   const {userId} = req.query;
-  console.log(userId);
+  console.log('GOT WORKOUT');
   Workout
     .find()
     .where({userId: userId})
@@ -50,7 +52,11 @@ router.get('/id/muscles', (req, res) => {
       .reduce((aggregate, exercise) => {
         return [...aggregate, ...exercise.musclesWorked];
       }, []);
-      return res.status(200).json(muscles);
+
+      const namesOnly = flatMap(muscles, (muscle) => {
+        return [muscle.name];
+      });
+      return res.status(200).json(namesOnly);
     });
   
 });
