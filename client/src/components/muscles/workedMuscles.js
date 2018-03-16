@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getMusclesFromWorkout} from '../../actions/workout'
 import MuscleMap from '../muscleMap';
-import {generateColorMap} from '../generateColorMap';
+import SVGUsage from '../generateColorMap';
 
 // console.log(generateColorMap)
 
@@ -18,18 +18,19 @@ class WorkedMuscles extends React.Component {
   render () {
     let musclesUsed;
     let colorMap;
-    const recentW = this.props.recentWorkout
     const usedMuscles = this.props.recentMuscles;
 
-    if (usedMuscles !== []) {
-      colorMap = generateColorMap(usedMuscles)
-      console.log(colorMap);
-      console.log(colorMap.Arms)
-    }
+    // if (usedMuscles !== []) {
+    //   colorMap = generateColorMap(usedMuscles)
+    //   console.log(colorMap);
+    //   console.log(colorMap.Arms)
+    // }
 
     return (<div>
-      {musclesUsed} {/* SVG */}
-      <MuscleMap 
+      {musclesUsed}
+      <SVGUsage 
+        usedMuscles={usedMuscles}/> {/* SVG */}
+      {/* <MuscleMap 
         chestColor={colorMap.Chest || '#5ca2be'}
         armColor={colorMap.Arms || '#5ca2be'}
         shoulderColor={colorMap.Shoulders || '#5ca2be'}
@@ -39,7 +40,7 @@ class WorkedMuscles extends React.Component {
         backArms={colorMap.Arms || '#5ca2be'}
         glutesColor={colorMap.Glutes || '#5ca2be'}
         backColor={colorMap.Back || '#5ca2be'}
-      />
+      /> */}
       </div>)
   }
   
