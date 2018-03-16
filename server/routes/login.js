@@ -24,7 +24,6 @@ const localAuth = passport.authenticate('local', {session: false});
   router.use(bodyParser.json());
 // CREATE AND SEND NEW JWT
   router.post('/login', localAuth, (req, res) => {
-    console.log(req.user + 'in login router');
     const authToken = createAuthToken(req.user.toObject());
     res.json({authToken});
 });

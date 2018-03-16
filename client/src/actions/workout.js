@@ -122,7 +122,8 @@ export const getWorkouts = () => (dispatch, getState) => {
   const userId = getState().auth.currentUser.id
 
   dispatch(getWorkoutRequest())
-  return fetch(`${API_BASE_URL}/workout?userId=${userId}`, {
+  console.log('muscles from workouts requested')
+  return fetch(`${API_BASE_URL}/muscles/workout?userId=${userId}`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',

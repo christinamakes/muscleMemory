@@ -5,7 +5,7 @@ const router = express.Router();
 const Workout = require('../models/workout');
 const passport = require('passport');
 const countBy = require('lodash.countby');
-// const flatMap = require('lodash.flatmap');
+const _ = require('lodash');
 
 
 
@@ -37,6 +37,40 @@ router.get('/workout', (req, res) => {
   
 });
 
+router.get('/muscles/workout', (req, res) => {
+  const {userId} = req.query;
+  Workout
+    .find()
+    .where({userId: userId})
+    .populate({path: 'exercises', populate: {path: 'musclesWorked', model: 'Muscle'}})
+    .then(workout => {
+      // console.log(workout);
+
+      // groups by workout ._id, [[823748237, [...exercises] ...]
+      const groups = _.groupBy(workout, (workout) => workout._id);
+      const entries = Object.entries(groups);
+
+
+      const muscles = workout.map((exercise) => exercise.musclesWorked);
+      const exercises = workout.map((exercise) => _.flatten(_.map(exercise, 'musclesWorked'))); 
+
+      // // array reducer
+      // .reduce((aggregate, exercise) => {
+      //   return [aggregate, ...exercise.musclesWorked];
+      // }, []);
+      // // muscles =>
+      const countedNames = exercises.map((exerciseGroup, index) => {
+        // countBy(exercises, (muscle) => {
+        // return muscle.name;
+        return exerciseGroup;
+      });
+    // });
+      // console.log(countedNames + ' COUNTED NAMMMMMMMMES');
+      return res.status(200).json(entries);
+      // return res.status(200).json(workout);
+    });
+});
+
 router.get('/id/muscles', (req, res) => {
   const {userId, workoutId} = req.query;
   Workout
@@ -61,3 +95,4 @@ router.get('/id/muscles', (req, res) => {
 });
 
 module.exports = router;
+
