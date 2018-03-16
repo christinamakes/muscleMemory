@@ -58,7 +58,6 @@ function workoutReducer(state = initialState, action) {
     case NEW_WORKOUT_SUCCESS:
       return {
         ...state,
-        workouts: [...state.workouts, action.data],
         error: null,
         loading: false
       }

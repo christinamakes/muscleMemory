@@ -13,7 +13,8 @@ const muscles = [{'arms':'5aa81a1ca3f42c4d7a855f91'},
 {'shoulders': '5aa81a1ca3f42c4d7a855f94'},
 {'abs':'5aa81a1ca3f42c4d7a855f96'}, 
 {'chest': '5aa81a1ca3f42c4d7a855f97'},
-{'glute':'5aa81a1ca3f42c4d7a855f95'}]
+{'glute':'5aa81a1ca3f42c4d7a855f95'},
+{'back': '5aa81a1ca3f42c4d7a855f93'}]
 
 console.log(Object.values(muscles[1])[0]); // get ID of arms
 console.log(Object.keys(muscles[1]).toString()) // get arms

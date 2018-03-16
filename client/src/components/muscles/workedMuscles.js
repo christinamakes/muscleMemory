@@ -48,8 +48,15 @@ class WorkedMuscles extends React.Component {
       <h1>{`Your most recent workout was ${recentW}`}</h1>
       {musclesUsed} {/* SVG */}
       <MuscleMap 
-        chestColor={colorMap.Chest || 'black'}
-        armColor={colorMap.Arms}
+        chestColor={colorMap.Chest || '#5ca2be'}
+        armColor={colorMap.Arms || '#5ca2be'}
+        shoulderColor={colorMap.Shoulders || '#5ca2be'}
+        absColor={colorMap.Abs || '#5ca2be'}
+        legsColor={colorMap.Legs || '#5ca2be'}
+        backLegs={colorMap.Legs || '#5ca2be'}
+        backArms={colorMap.Arms || '#5ca2be'}
+        glutesColor={colorMap.Glutes || '#5ca2be'}
+        backColor={colorMap.Back || '#5ca2be'}
       />
       </div>)
   }

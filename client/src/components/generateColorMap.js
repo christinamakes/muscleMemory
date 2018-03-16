@@ -17,7 +17,7 @@ const keys = {
 export const generateColorMap = (dbValues) => {
   const keys = {
     0: 'black',
-    1: 'yellow',
+    1: 'rgb(240, 240, 72)',
     2: 'orange',
     3: 'red' // greater than 3
   }
