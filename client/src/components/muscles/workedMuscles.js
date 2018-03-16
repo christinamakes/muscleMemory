@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getMusclesFromWorkout} from '../../actions/workout'
 import MuscleMap from '../muscleMap';
-import requiresLogin from '../requires-login';
+
 
 class WorkedMuscles extends React.Component {
 

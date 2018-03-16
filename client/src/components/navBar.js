@@ -4,7 +4,6 @@ import React, {Component} from 'react' ;
 import {connect} from 'react-redux';
 import {Nav, StyleLink} from './styles/links'
 import {clearAuth} from '../actions/auth' 
-import {clearAuthToken} from '../local-storage' // DO THIS
 
 
 
