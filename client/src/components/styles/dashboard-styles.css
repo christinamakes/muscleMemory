@@ -1,0 +1,17 @@
+h1 {
+  color: red;
+}
+
+.your-workouts {
+  float: right;
+  border: 2px solid green;
+}
+
+.worked-muscles {
+  border: 2px solid yellow
+}
+
+.log-workout {
+  border: 2px solid red;
+  color: blue
+}

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getMusclesFromWorkout} from '../../actions/workout'
 import MuscleMap from '../muscleMap';
 import {generateColorMap} from '../generateColorMap';
+
 // console.log(generateColorMap)
 
 
@@ -19,33 +20,14 @@ class WorkedMuscles extends React.Component {
     let colorMap;
     const recentW = this.props.recentWorkout
     const usedMuscles = this.props.recentMuscles;
-  
-    // if (this.props.loggedIn && this.props.recentWorkout) {
-    //   musclesUsed = this.props.recentMuscles.map((muscle, index) => 
-    //     <div key={index}>
-    //     <h1>{muscle}</h1>
-    //     </div>)
-    // } else return <h1>Please log a workout</h1>
-  
-    // color = {3: 'red'}
-    // muscles = {'arms': 3}
-    // const keys = {
-    //   0: 'black',
-    //   1: 'yellow',
-    //   2: 'orange',
-    //   3: 'red' // greater than 3
-    // }
-    console.log(usedMuscles)
 
     if (usedMuscles !== []) {
       colorMap = generateColorMap(usedMuscles)
       console.log(colorMap);
       console.log(colorMap.Arms)
-
     }
 
     return (<div>
-      <h1>{`Your most recent workout was ${recentW}`}</h1>
       {musclesUsed} {/* SVG */}
       <MuscleMap 
         chestColor={colorMap.Chest || '#5ca2be'}

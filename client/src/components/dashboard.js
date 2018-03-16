@@ -6,18 +6,26 @@ import WorkedMuscles from './muscles/workedMuscles'
 import requiresLogin from './requires-login';
 import {connect} from 'react-redux';
 
+import './styles/dashboard-styles.css';
+
 class Dashboard extends React.Component {
 
     render() {
       console.log('dashboard');
       return(
         <div className='dashboard'>
-        <h1>Hi there</h1>
-        <YourWorkouts />
-        <h1>Recently used muscles</h1>
-        <WorkedMuscles />
-        <h1>Log a workout</h1>
-        <LogWorkout />
+          <div className='your-workouts'>
+            <h1>Hi there</h1>
+            <YourWorkouts />
+          </div>
+          <div className='worked-muscles'>
+            <h1>Recently used muscles</h1>
+            <WorkedMuscles />
+          </div>
+          <div className='log-workout'>
+            <h1>Log a workout</h1>
+            <LogWorkout />
+          </div>
         </div>
       )
     }

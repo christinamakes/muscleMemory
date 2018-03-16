@@ -4,36 +4,23 @@ const dbValues = {
   "Legs": 1
 }
 
-const keys = {
-  0: 'black',
-  1: 'yellow',
-  2: 'orange',
-  3: 'red' // greater than 3
-}
-
-
-
 
 export const generateColorMap = (dbValues) => {
-  const keys = {
+  const INTENSITY_MAP = {
     0: 'black',
-    1: 'rgb(240, 240, 72)',
+    1: 'yellow',
     2: 'orange',
-    3: 'red' // greater than 3
-  }
-  let returnObj = {};
-  for (let muscleGroup in dbValues) {
-    let muscleE = dbValues[muscleGroup];
-    if (muscleE > 3 ) {
-      muscleE = 3;
-    }
-    if (muscleE in keys) {
-      returnObj[muscleGroup] = keys[muscleE]
-    }
-  }
-  return returnObj
+    3: 'red'
+  };
+  const MAX_INTENSITY = Math.max.apply(null, Object.keys(INTENSITY_MAP));
+  
+  return Object.entries(dbValues)
+    .reduce(( muscleUseMap, [groupName, useLvl] ) => {
+      muscleUseMap[groupName] = (useLvl <= MAX_INTENSITY) ? INTENSITY_MAP[useLvl] : INTENSITY_MAP[MAX_INTENSITY];
+      return muscleUseMap;
+    }, {});
 }
 
-// generateColorMap(dbValues, keys)
+console.log(generateColorMap(dbValues));
 // { Arms: 'red', Glutes: 'yellow', Legs: 'yellow' }
 
