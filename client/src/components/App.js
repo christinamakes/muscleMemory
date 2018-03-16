@@ -10,7 +10,6 @@ import Dashboard from './dashboard';
 import HomePage from './homepage';
 
 import {Route} from 'react-router-dom';
-import {connect} from 'react-redux';
 import {refreshAuthToken} from '../actions/auth'
 
 
