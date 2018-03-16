@@ -7,6 +7,7 @@ import Login from './login-signup/login';
 import ExercisePage from './exercisePage';
 import WorkoutPage from './workoutPage';
 import Dashboard from './dashboard';
+import HomePage from './homepage';
 
 import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -67,6 +68,7 @@ class App extends Component {
         <Route exact path='/exercises' component={ExercisePage} />
         <Route exact path='/workouts' component={WorkoutPage} />
         <Route exact path='/dashboard' component={Dashboard} />
+        <Route exact path='/' component={HomePage} />
       </div>
     );
   }
