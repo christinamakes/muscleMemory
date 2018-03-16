@@ -2,9 +2,10 @@ import React from 'react';
 import ExerciseForm from './exercises/addExerciseForm'
 import BrowseExercises from './exercises/browseExercises';
 import MuscleMap from './muscleMap';
+import requiresLogin from './requires-login';
 
 
-export default class SignupPage extends React.Component {
+class ExercisePage extends React.Component {
   render() {
     return (
       <div>
@@ -16,5 +17,5 @@ export default class SignupPage extends React.Component {
   }
 }
 
-
+export default requiresLogin()(ExercisePage)
 

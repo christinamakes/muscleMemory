@@ -1,9 +1,10 @@
 import React from 'react';
 import WorkoutForm from './workout/createWorkout';
+import requiresLogin from './requires-login';
 
 
 
-export default class SignupPage extends React.Component {
+class WorkoutPage extends React.Component {
   render() {
     return (
       <div>
@@ -14,4 +15,4 @@ export default class SignupPage extends React.Component {
 }
 
 
-
+export default requiresLogin()(WorkoutPage)
