@@ -10,6 +10,6 @@ export const saveAuthToken = authToken => {
 
 export const clearAuthToken = () => {
   try {
-    localStorage.removeItem('authToekn');
+    localStorage.removeItem('authToken');
   } catch (e) {};
 }
