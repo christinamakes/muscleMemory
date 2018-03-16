@@ -13,11 +13,13 @@ export default function SVGUsage(props) {
     const INTENSITY_MAP = {
       1: 'yellow',
       2: 'orange',
-      3: 'red'
+      3: 'red',
     };
-    const MAX_INTENSITY = Math.max.apply(null, Object.keys(INTENSITY_MAP));
+    const MAX_INTENSITY = 3
+    //Math.max.apply(null, Object.keys(INTENSITY_MAP));
     
     return Object.entries(dbValues)
+    // [['Arms', 61], ['Glutes', 1] ...]
       .reduce(( muscleUseMap, [groupName, useLvl] ) => {
         muscleUseMap[groupName] = (useLvl <= MAX_INTENSITY) ? INTENSITY_MAP[useLvl] : INTENSITY_MAP[MAX_INTENSITY];
         return muscleUseMap;

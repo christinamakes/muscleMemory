@@ -14,7 +14,7 @@ class NavBar extends Component {
     if (this.props.loggedIn) {
       console.log('loggedin!!')
       loggedIn = <div className='loggedin'>
-          <StyleLink to='/workouts'>Workouts</StyleLink>
+          <StyleLink to='/workouts'>My Workouts</StyleLink>
           <StyleLink to='/exercises'>Exercises</StyleLink>
           <StyleLink to='/dashboard'>Dashboard</StyleLink>
           <StyleLink to='/' onClick={() => this.props.dispatch(clearAuth())}>Logout</StyleLink></div>
