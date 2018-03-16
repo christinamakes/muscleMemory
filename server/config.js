@@ -15,5 +15,5 @@ module.exports = {
         process.env.JWT_SECRET,
         
     JWT_EXPIRY: 
-        process.env.JWT_EXPIRY || '7d',
+        process.env.JWT_EXPIRY || '2h',
 };
