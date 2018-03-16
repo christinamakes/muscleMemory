@@ -11,7 +11,6 @@ export default function SVGUsage(props) {
   let colorMap;
   const generateColorMap = (dbValues) => {
     const INTENSITY_MAP = {
-      0: 'black',
       1: 'yellow',
       2: 'orange',
       3: 'red'
