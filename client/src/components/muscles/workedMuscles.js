@@ -28,7 +28,7 @@ class WorkedMuscles extends React.Component {
     // muscles = {'arms': 3}
     return (<div>
       <h1>{`Your most recent workout was ${recentW}`}</h1>
-      {musclesUsed}
+      {musclesUsed} {/* SVG */}
       <MuscleMap 
         chestColor='yellow'
         armColor='green'
